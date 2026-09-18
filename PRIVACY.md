@@ -14,4 +14,6 @@ Wobble World is a game for children. We designed it to collect **no personal inf
 
 **Changes:** If this policy ever changes, the updated version will be published at the same address with a new date.
 
-**Contact:** _add your contact email here before publishing_
+**Contact:** via the project page, https://github.com/oce1982-pixel/wobble-world/issues
+
+This policy is published at https://oce1982-pixel.github.io/wobble-world/privacy.html

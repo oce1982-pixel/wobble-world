@@ -1,6 +1,6 @@
 # Wobble World
 
-A kids' collect-a-thon game: hatch and collect 36 Wobblers, play six mini-games, dress up your buddy, build a room, earn badges and climb the rivals ladder. The game is one HTML file with no dependencies, no backend, no ads and no data collection.
+A kids' collect-a-thon game: hatch and collect 48 Wobblers across three worlds, play eight mini-games, dress up your buddy, build a room, earn badges and climb the rivals ladder. The game is one HTML file with no dependencies, no backend, no ads and no data collection.
 
 ## Layout
 
