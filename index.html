@@ -188,13 +188,17 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
 #jumpCanvas{aspect-ratio:4/5;background:linear-gradient(180deg,#8FD8FF,#E3F6FF)}
 #runCanvas{aspect-ratio:5/4;background:linear-gradient(180deg,#8FD8FF,#E3F6FF)}
 #stackCanvas{aspect-ratio:4/5;background:linear-gradient(180deg,#FFE6F2,#FFF7E0)}
-.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.world{border-radius:18px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 5px 0 rgba(0,0,0,.15);transition:transform .08s;position:relative}
+.worlds{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.world{border-radius:18px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 5px 0 rgba(0,0,0,.15);transition:transform .08s;position:relative}
 .world:active{transform:translateY(3px)}
 .world .wi{font-size:1.8rem;line-height:1.2}.world .wn{font-family:Fredoka;font-size:.95rem}.world .wc{font-size:.7rem;opacity:.8}
 .world.on{outline:4px solid var(--sun)}
 .world.locked{opacity:.55}
 .slot .wt{position:absolute;top:4px;right:6px;font-size:.8rem}
+.wod{display:flex;align-items:center;gap:12px}.wod svg{width:72px;height:72px;flex:none}.wod .info{flex:1}.wod .info p{font-size:.82rem;color:var(--muted)}
+.wod .tag{display:inline-block;background:var(--sun);border-radius:8px;padding:2px 8px;font-size:.72rem;margin-right:4px}
+.event{margin-top:14px;border-radius:22px;padding:14px;color:#fff;display:flex;align-items:center;gap:12px;box-shadow:0 6px 0 rgba(0,0,0,.2)}
+.event .ei{font-size:2.2rem}.event .et{font-family:Fredoka;font-size:1.15rem}.event p{font-size:.82rem;opacity:.9}.event svg{width:64px;height:64px;flex:none;background:rgba(255,255,255,.2);border-radius:16px;padding:4px}
 .hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:8px}
 .gwrap{position:relative}
 
@@ -270,7 +274,7 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
 </style>
 
 <div class="app">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6F61"/><stop offset=".3" stop-color="#FFD84D"/><stop offset=".55" stop-color="#5FD68A"/><stop offset=".8" stop-color="#4FB0FF"/><stop offset="1" stop-color="#9B6BFF"/></linearGradient><radialGradient id="gGalaxy" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6D4BFF"/><stop offset=".6" stop-color="#2B1E6B"/><stop offset="1" stop-color="#140F3A"/></radialGradient><linearGradient id="gFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3D3D"/><stop offset=".5" stop-color="#FF8A00"/><stop offset="1" stop-color="#FFD84D"/></linearGradient><linearGradient id="gCandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#FFF"/><stop offset="1" stop-color="#FF6F9C"/></linearGradient><radialGradient id="gNova" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFF6A0"/><stop offset=".5" stop-color="#FF8A5B"/><stop offset="1" stop-color="#7A2BFF"/></radialGradient></defs></svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6F61"/><stop offset=".3" stop-color="#FFD84D"/><stop offset=".55" stop-color="#5FD68A"/><stop offset=".8" stop-color="#4FB0FF"/><stop offset="1" stop-color="#9B6BFF"/></linearGradient><radialGradient id="gGalaxy" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6D4BFF"/><stop offset=".6" stop-color="#2B1E6B"/><stop offset="1" stop-color="#140F3A"/></radialGradient><linearGradient id="gFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3D3D"/><stop offset=".5" stop-color="#FF8A00"/><stop offset="1" stop-color="#FFD84D"/></linearGradient><linearGradient id="gCandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#FFF"/><stop offset="1" stop-color="#FF6F9C"/></linearGradient><linearGradient id="gOcean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FD1C5"/><stop offset="1" stop-color="#1B4F4A"/></linearGradient><radialGradient id="gNova" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFF6A0"/><stop offset=".5" stop-color="#FF8A5B"/><stop offset="1" stop-color="#7A2BFF"/></radialGradient></defs></svg>
   <div class="topbar">
     <div class="pill" id="coinPill"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#FFB300"/><circle cx="10" cy="10" r="6.5" fill="#FFD84D"/><text x="10" y="13.5" text-anchor="middle" font-size="9" font-weight="900" fill="#B27400" font-family="Fredoka,sans-serif">W</text></svg><span id="coins">0</span></div>
     <div class="pill"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.5 4.6 17.5l1.2-6L1.3 7.3l6.1-.7z" fill="#9B6BFF"/></svg>Lv <span id="level">1</span></div>
@@ -292,6 +296,12 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
       </div>
       <div class="xpwrap"><div class="bar"><i id="xpFill"></i></div><div class="lbl" id="xpLabel">0 / 100 XP</div></div>
       <div style="display:flex;gap:8px;margin-top:12px"><button class="btn sun small" style="flex:1" id="feedBtn">🍎 Feed</button><button class="btn mint small" style="flex:1" id="playBtn">🎮 Play</button></div>
+    </div>
+
+    <div id="eventBanner"></div>
+    <div class="sec">
+      <h2>Wobbler of the Day</h2>
+      <div class="card wod" id="wod"></div>
     </div>
 
     <div class="sec">
@@ -352,6 +362,7 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
   <section class="screen" id="me" hidden>
     <h2 style="margin-bottom:8px">My stuff</h2>
     <div class="stats" id="stats"></div>
+    <button class="btn blue wide" id="shareApp" style="margin-top:12px" hidden>📣 Share Wobble World with a friend</button>
     <div class="sec"><h2>Badges <small id="badgeCount"></small></h2><div class="badges" id="badgeGrid"></div></div>
     <div class="sec"><h2>Collection <small id="collCount"></small></h2><div class="collgrid" id="collection"></div><p class="hint">Tap a Wobbler you own to make it your buddy.</p></div>
   </section>
@@ -437,8 +448,8 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
     <div class="big" id="resScore">0</div>
     <div id="resLabel" style="color:var(--muted)">stars caught</div>
     <div id="resBadges"></div>
-    <div class="rewards"><div class="pill"><i class="ci"></i> +<span id="resCoins">0</span></div><div class="pill">✨ +<span id="resXP">0</span> XP</div><div class="pill" id="resBonus" hidden>😊 ×1.5</div></div>
-    <div class="btns"><button class="btn mint wide" id="resAgain">Play again</button><button class="btn ghost wide" id="resHome">Done</button></div>
+    <div class="rewards"><div class="pill"><i class="ci"></i> +<span id="resCoins">0</span></div><div class="pill">✨ +<span id="resXP">0</span> XP</div><div class="pill" id="resBonus" hidden>😊 ×1.5</div><div class="pill" id="resWod" hidden>🌟 ×1.2</div></div>
+    <div class="btns"><button class="btn mint wide" id="resAgain">Play again</button><button class="btn blue wide" id="resShare" hidden>📣 Share score</button><button class="btn ghost wide" id="resHome">Done</button></div>
   </div>
 </div>
 <div class="overlay" id="renameDlg" hidden>
@@ -477,7 +488,27 @@ const WOBBLERS = [
   {id:'astro',name:'Astro',color:'#C0C8FF',rarity:'common',acc:'helmet',world:'space'},{id:'moony',name:'Moony',color:'#F3F3E0',rarity:'common',acc:'crater',world:'space'},
   {id:'comet',name:'Comet',color:'#7DF9FF',rarity:'rare',acc:'trail',world:'space'},{id:'martian',name:'Martian',color:'#7BFF66',rarity:'rare',acc:'antennae',world:'space'},
   {id:'nova',name:'Nova',color:'url(#gNova)',rarity:'epic',acc:'sparkle',world:'space'},{id:'blackhole',name:'Black Hole',color:'#0B0B1E',rarity:'legendary',acc:'ring',world:'space'},
+  // Ocean World
+  {id:'bubbles',name:'Bubbles',color:'#BFF3FF',rarity:'common',acc:'bubbles',world:'ocean'},{id:'sandy',name:'Sandy',color:'#F5DEB3',rarity:'common',acc:'sticker',world:'ocean'},
+  {id:'finn',name:'Finn',color:'#4FB0FF',rarity:'rare',acc:'fin',world:'ocean'},{id:'crabby',name:'Crabby',color:'#FF6F61',rarity:'rare',acc:'claws',world:'ocean'},
+  {id:'pearl',name:'Pearl',color:'#FFF0F5',rarity:'epic',acc:'pearl',world:'ocean'},{id:'kraken',name:'Kraken',color:'url(#gOcean)',rarity:'legendary',acc:'tentacles',world:'ocean'},
+  // Seasonal event exclusives (only hatchable during their event)
+  {id:'boo',name:'Boo',color:'#F4F6FF',rarity:'epic',acc:'ghost',event:'spooky'},{id:'snowy',name:'Snowy',color:'#FFFFFF',rarity:'epic',acc:'beanie',event:'winter'},
+  {id:'blossom',name:'Blossom',color:'#FFB7D5',rarity:'epic',acc:'flower',event:'spring'},{id:'surfy',name:'Surfy',color:'#4FD1C5',rarity:'epic',acc:'shades',event:'summer'},
 ];
+const EVENTS = [
+  {id:'spooky',name:'Spooky Season',icon:'🎃',from:'10-15',to:'11-02',wob:'boo'},
+  {id:'winter',name:'Winter Wonderland',icon:'❄️',from:'12-10',to:'01-06',wob:'snowy'},
+  {id:'spring',name:'Spring Bloom',icon:'🌸',from:'03-15',to:'04-15',wob:'blossom'},
+  {id:'summer',name:'Summer Splash',icon:'🏖️',from:'07-01',to:'08-15',wob:'surfy'},
+];
+function activeEvent(){
+  const forced=new URLSearchParams(location.search).get('event'); if(forced) return EVENTS.find(e=>e.id===forced)||null;
+  const md=todayStr().slice(5);
+  return EVENTS.find(e=> e.from<=e.to ? (md>=e.from&&md<=e.to) : (md>=e.from||md<=e.to)) || null;
+}
+function eventDaysLeft(ev){ const now=new Date(); let end=new Date(now.getFullYear()+'-'+ev.to+'T23:59:59'); if(end<now) end=new Date((now.getFullYear()+1)+'-'+ev.to+'T23:59:59'); return Math.max(1,Math.ceil((end-now)/864e5)); }
+function wobblerOfDay(){ const pool=WOBBLERS.filter(w=>!w.world&&!w.event); const d=Math.floor(Date.now()/864e5); return pool[d%pool.length]; }
 const RARITY = {common:{label:'Common',color:'#8FA3C8',w:60},rare:{label:'Rare',color:'#4FB0FF',w:28},epic:{label:'Epic',color:'#9B6BFF',w:10},legendary:{label:'Legendary',color:'#FFB300',w:2}};
 const GOLD_W = {common:0,rare:60,epic:32,legendary:8};
 const byId = id => WOBBLERS.find(w=>w.id===id) || WOBBLERS[0];
@@ -507,6 +538,7 @@ const WORLDS = {
   sky:{name:'Sky World',icon:'☁️',lv:1,sky:'#8FD8FF',sky2:'#E3F6FF',ground:'#F6FBFF',inkBg:'#22305A'},
   candy:{name:'Candy World',icon:'🍭',lv:8,sky:'#FFB3D9',sky2:'#FFE6F2',ground:'#FFF5FA',inkBg:'#7A2E52'},
   space:{name:'Space World',icon:'🚀',lv:12,sky:'#1B1F5C',sky2:'#3D3F8F',ground:'#2A2C6E',inkBg:'#FFFFFF',dark:true},
+  ocean:{name:'Ocean World',icon:'🌊',lv:16,sky:'#4FD1C5',sky2:'#BFF3EE',ground:'#EAFBF9',inkBg:'#1B4F4A'},
 };
 const BADGES = [
   {id:'first_hatch',icon:'🥚',name:'First Hatch',desc:'Hatch an egg',coins:30,c:s=>s.stats.hatches>=1},
@@ -534,7 +566,11 @@ const BADGES = [
   {id:'stack25',icon:'🧱',name:'Architect',desc:'25 blocks in Wobble Tower',coins:120,c:s=>(s.best.stack||0)>=25},
   {id:'candy',icon:'🍭',name:'Sweet Tooth',desc:'Hatch a Candy World Wobbler',coins:100,c:s=>s.owned.some(id=>byId(id).world==='candy')},
   {id:'space',icon:'🚀',name:'Space Cadet',desc:'Hatch a Space World Wobbler',coins:100,c:s=>s.owned.some(id=>byId(id).world==='space')},
-  {id:'all48',icon:'🌍',name:'World Champion',desc:'Own every Wobbler in every world',coins:2000,c:s=>s.owned.length>=WOBBLERS.length},
+  {id:'ocean',icon:'🌊',name:'Deep Diver',desc:'Hatch an Ocean World Wobbler',coins:100,c:s=>s.owned.some(id=>byId(id).world==='ocean')},
+  {id:'seasonal',icon:'🎉',name:'Party Animal',desc:'Hatch a seasonal event Wobbler',coins:150,c:s=>s.owned.some(id=>byId(id).event)},
+  {id:'wod7',icon:'🌟',name:'Star Buddy',desc:'Play as the Wobbler of the Day 7 times',coins:80,c:s=>(s.stats.wod||0)>=7},
+  {id:'share',icon:'📣',name:'Town Crier',desc:'Share a score with a friend',coins:50,c:s=>(s.stats.shares||0)>=1},
+  {id:'all48',icon:'🌍',name:'World Champion',desc:'Own every Wobbler in every world',coins:2000,c:s=>s.owned.filter(id=>!byId(id).event).length>=WOBBLERS.filter(w=>!w.event).length},
 ];
 
 /* ================= ART ================= */
@@ -600,6 +636,12 @@ function wobblerSVG(w, attrs='', wear=null){
     trail:`<g stroke="#7DF9FF" stroke-width="4" stroke-linecap="round" opacity=".9"><line x1="-4" y1="36" x2="14" y2="36"/><line x1="-8" y1="50" x2="10" y2="50"/><line x1="-2" y1="64" x2="14" y2="64"/></g><path d="M50 12 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z" fill="#fff"/>`,
     antennae:`<line x1="36" y1="14" x2="26" y2="-2" stroke="#3FA34D" stroke-width="3"/><line x1="64" y1="14" x2="74" y2="-2" stroke="#3FA34D" stroke-width="3"/><circle cx="26" cy="-2" r="4" fill="#FFD84D"/><circle cx="74" cy="-2" r="4" fill="#FFD84D"/>`,
     ring:`<ellipse cx="50" cy="52" rx="58" ry="12" fill="none" stroke="#FF8A5B" stroke-width="5" transform="rotate(-12 50 52)"/><ellipse cx="50" cy="52" rx="58" ry="12" fill="none" stroke="#FFD84D" stroke-width="2" transform="rotate(-12 50 52)"/>`,
+    bubbles:`<g fill="none" stroke="#fff" stroke-width="2" opacity=".9"><circle cx="18" cy="22" r="6"/><circle cx="82" cy="30" r="4"/><circle cx="86" cy="14" r="7"/><circle cx="12" cy="40" r="3"/></g>`,
+    fin:`<path d="M50 14 L40 -4 L64 4 Z" fill="#2A7FD1"/><path d="M10 60 L-6 50 L-4 72 Z" fill="#2A7FD1"/><path d="M90 60 L106 50 L104 72 Z" fill="#2A7FD1"/>`,
+    claws:`<path d="M8 56 Q-8 44 2 30 Q10 40 14 34 Q16 52 8 56 Z" fill="#E8453C"/><path d="M92 56 Q108 44 98 30 Q90 40 86 34 Q84 52 92 56 Z" fill="#E8453C"/><path d="M28 14 L22 -4 M72 14 L78 -4" stroke="#22305A" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="-4" r="4" fill="#fff" stroke="#22305A" stroke-width="2"/><circle cx="78" cy="-4" r="4" fill="#fff" stroke="#22305A" stroke-width="2"/>`,
+    pearl:`<path d="M22 90 Q50 60 78 90 Z" fill="#FFD1DC" stroke="#FF8FB8" stroke-width="2"/><path d="M30 88 Q50 72 70 88 M36 89 Q50 78 64 89" stroke="#FF8FB8" stroke-width="1.5" fill="none"/><circle cx="50" cy="8" r="7" fill="#fff" stroke="#DCE3EE" stroke-width="2"/><circle cx="48" cy="6" r="2" fill="#fff"/>`,
+    tentacles:`<g stroke="#2E8B7F" stroke-width="7" stroke-linecap="round" fill="none"><path d="M18 74 Q4 84 10 98"/><path d="M32 82 Q26 94 34 102"/><path d="M68 82 Q74 94 66 102"/><path d="M82 74 Q96 84 90 98"/></g><g fill="#7DF9FF"><circle cx="8" cy="92" r="2"/><circle cx="92" cy="92" r="2"/><circle cx="31" cy="96" r="2"/><circle cx="69" cy="96" r="2"/></g>`,
+    flower:`<g transform="translate(74 18)"><circle cx="0" cy="-9" r="6" fill="#FF6F9C"/><circle cx="9" cy="-3" r="6" fill="#FF6F9C"/><circle cx="6" cy="8" r="6" fill="#FF6F9C"/><circle cx="-6" cy="8" r="6" fill="#FF6F9C"/><circle cx="-9" cy="-3" r="6" fill="#FF6F9C"/><circle cx="0" cy="0" r="5" fill="#FFD84D"/></g>`,
     stars:`<g fill="#fff"><circle cx="24" cy="30" r="1.5"/><circle cx="72" cy="24" r="1.2"/><circle cx="80" cy="66" r="1.5"/><circle cx="20" cy="70" r="1"/><circle cx="50" cy="80" r="1.3"/><path d="M76 34 l1 3 3 1 -3 1 -1 3 -1 -3 -3 -1 3 -1 z"/></g>`,
   };
   const wl=wearLayers(wear);
@@ -638,9 +680,10 @@ function tone(f,d=.12,type='sine',v=.12,slide){
     if(slide) o.frequency.exponentialRampToValueAtTime(slide,t+d); g.gain.setValueAtTime(v,t); g.gain.exponentialRampToValueAtTime(.001,t+d);
     o.connect(g).connect(actx.destination); o.start(t); o.stop(t+d); }catch(e){}
 }
+const buzz=p=>{try{ if(!S.muted&&navigator.vibrate) navigator.vibrate(p); }catch(e){} };
 const sfx = {
-  pop:()=>tone(520,.1,'square',.07,980), coin:()=>{tone(1250,.07,'square',.05);setTimeout(()=>tone(1700,.12,'square',.05),70)},
-  bad:()=>tone(220,.28,'sawtooth',.08,80), win:()=>[523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,.2,'triangle',.12),i*110)),
+  pop:()=>{tone(520,.1,'square',.07,980);buzz(8);}, coin:()=>{tone(1250,.07,'square',.05);setTimeout(()=>tone(1700,.12,'square',.05),70)},
+  bad:()=>{tone(220,.28,'sawtooth',.08,80);buzz(40);}, win:()=>[523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,.2,'triangle',.12),i*110)),
   fanfare:()=>[523,659,784,1046,784,1046,1318].forEach((f,i)=>setTimeout(()=>tone(f,.22,'triangle',.13),i*120)),
   squeak:()=>tone(650+Math.random()*500,.13,'sine',.1,1500), pad:i=>tone([392,494,587,698][i],.3,'triangle',.14),
   tick:()=>tone(900,.05,'square',.03), boing:()=>tone(300,.15,'sine',.1,700), eat:()=>{tone(400,.08,'square',.06);setTimeout(()=>tone(300,.1,'square',.06),90)},
@@ -711,7 +754,7 @@ function renderHome(){
   const fl=friendLevel(w.id); $('#hearts').innerHTML='💖'.repeat(fl)+'<span style="opacity:.25">💖</span>'.repeat(5-fl)+(fl===5?' <small style="color:var(--muted)">Best friends!</small>':'');
   $('#hungerFill').style.width=S.care.hunger+'%'; $('#happyFill').style.width=S.care.happy+'%';
   $('#heroSvg').onclick=()=>{const el=$('#heroSvg');el.classList.remove('jump');void el.offsetWidth;el.classList.add('jump');sfx.squeak();S.care.happy=Math.min(100,S.care.happy+1);$('#happyFill').style.width=S.care.happy+'%';};
-  $('#eggIcon').innerHTML=EGG_SVG(); $('#eggIconGold').innerHTML=EGG_SVG('',true); renderWorlds(); $('#eggWorld').textContent=WORLDS[S.world].name;
+  $('#eggIcon').innerHTML=EGG_SVG(); $('#eggIconGold').innerHTML=EGG_SVG('',true); renderWorlds(); $('#eggWorld').textContent=WORLDS[S.world].name; renderDaily();
   $('#ownCount').textContent=S.owned.length; $('#totalCount').textContent=WOBBLERS.length;
   const g=S.goals; const defs=[{t:'Play 3 games',p:g.play,m:3},{t:'Catch 15 stars in one Star Catch',p:g.star,m:15},{t:'Hatch an egg',p:g.hatch,m:1}];
   const allDone=defs.every(d=>d.p>=d.m);
@@ -774,8 +817,9 @@ function renderMe(){
   $('#stats').innerHTML=[[st.games,'games played'],[S.owned.length,'Wobblers'],[st.coinsEarned,'coins earned'],[S.badges.length,'badges'],[top,'#1 ranks'],[S.streak,'day streak']].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
   $('#badgeCount').textContent=`${S.badges.length}/${BADGES.length}`;
   $('#badgeGrid').innerHTML=BADGES.map(b=>`<div class="badge ${S.badges.includes(b.id)?'':'locked'}"><div class="bi">${b.icon}</div><div class="bt">${b.name}</div><div class="bd">${b.desc}</div></div>`).join('');
+  const sa=$('#shareApp'); sa.hidden=!navigator.share; sa.onclick=()=>shareText('Come play Wobble World with me! Hatch eggs, collect Wobblers and beat my scores 🥚');
   $('#collCount').textContent=`${S.owned.length}/${WOBBLERS.length}`;
-  $('#collection').innerHTML=WOBBLERS.map(w=>{const own=S.owned.includes(w.id);return `<div class="slot ${own?'':'locked'} ${w.id===S.active?'active':''}" data-id="${w.id}" ${own?'tabindex="0" role="button"':''} title="${own?w.name:(w.world?'Hatch in '+WORLDS[w.world].name:'???')}">${wobblerSVG(w)}${w.world?'<span class="wt">'+WORLDS[w.world].icon+'</span>':''}<span class="r" style="background:${RARITY[w.rarity].color}">${own?(S.names[w.id]||w.name):'?'}</span></div>`}).join('');
+  $('#collection').innerHTML=WOBBLERS.map(w=>{const own=S.owned.includes(w.id);return `<div class="slot ${own?'':'locked'} ${w.id===S.active?'active':''}" data-id="${w.id}" ${own?'tabindex="0" role="button"':''} title="${own?w.name:(w.world?'Hatch in '+WORLDS[w.world].name:w.event?'Only during '+EVENTS.find(e=>e.id===w.event).name:'???')}">${wobblerSVG(w)}${w.world?'<span class="wt">'+WORLDS[w.world].icon+'</span>':w.event?'<span class="wt">'+EVENTS.find(e=>e.id===w.event).icon+'</span>':''}<span class="r" style="background:${RARITY[w.rarity].color}">${own?(S.names[w.id]||w.name):'?'}</span></div>`}).join('');
   document.querySelectorAll('.slot:not(.locked)').forEach(el=>el.onclick=()=>{S.active=el.dataset.id;sfx.pop();save();renderMe();toast(`${heroName()} is your buddy now!`);});
 }
 
@@ -804,10 +848,10 @@ function finishGame({game,score,coins,xp}){
   const G=GAMES[game]; careTick();
   const rankBefore=rankOf(game);
   S.stats.games++; S.goals.play++; S.care.happy=Math.min(100,S.care.happy+15);
-  S.friend[S.active]=(S.friend[S.active]||0)+10;
+  const isWod=S.active===wobblerOfDay().id; S.friend[S.active]=(S.friend[S.active]||0)+(isWod?20:10); if(isWod) S.stats.wod=(S.stats.wod||0)+1;
   const prev=S.best[game]; const isBest = score>0 && (prev==null || (G.lower? score<prev : score>prev));
   if(isBest) S.best[game]=score;
-  const happy=isHappy(); if(happy) coins=Math.round(coins*1.5);
+  const happy=isHappy(); if(happy) coins=Math.round(coins*1.5); if(isWod) coins=Math.round(coins*1.2);
   addCoins(coins); addXP(xp); save();
   const rankAfter=rankOf(game);
   $('#resTitle').textContent=isBest&&prev!=null?'New record!':coins>=40?'Amazing!':coins>=15?'Nice one!':'Good try!';
@@ -817,7 +861,8 @@ function finishGame({game,score,coins,xp}){
   else if(rankAfter>1){ const i=10-rankAfter; tags+=`<span class="newbest" style="background:var(--card2)">Beat ${RIVALS[i]}'s ${G.ladder[i]} for rank #${rankAfter-1}</span>`; }
   else tags+='<span class="newbest">🥇 You are #1!</span>';
   $('#resBadges').innerHTML=tags;
-  $('#resCoins').textContent=coins; $('#resXP').textContent=xp; $('#resBonus').hidden=!happy;
+  $('#resCoins').textContent=coins; $('#resXP').textContent=xp; $('#resBonus').hidden=!happy; $('#resWod').hidden=!isWod;
+  $('#resShare').hidden=!navigator.share; $('#resShare').onclick=()=>shareText(`I scored ${score} ${G.label} in ${G.name} on Wobble World! Can you beat me? 🥚`);
   $('#results').hidden=false;
   if(coins>=30){sfx.win();confetti(100);} else sfx.coin();
   checkBadges();
@@ -856,7 +901,9 @@ function hatch(gold=false,free=false){
   const weights=gold?GOLD_W:Object.fromEntries(Object.entries(RARITY).map(([k,r])=>[k,r.w]));
   const total=Object.values(weights).reduce((a,b)=>a+b,0); let roll=Math.random()*total, rar='common';
   for(const [k,wv] of Object.entries(weights)){ if(roll<wv){rar=k;break;} roll-=wv; }
-  let cand=WOBBLERS.filter(w=>w.rarity===rar&&(!w.world||w.world===S.world)); const unowned=cand.filter(w=>!S.owned.includes(w.id)); if(unowned.length&&Math.random()<.7) cand=unowned;
+  const ev=activeEvent(); let cand=WOBBLERS.filter(w=>w.rarity===rar&&(!w.world||w.world===S.world)&&(!w.event||(ev&&w.event===ev.id)));
+  const wod=wobblerOfDay(); if(wod.rarity===rar&&!S.owned.includes(wod.id)&&Math.random()<.5) cand=[wod];
+  if(ev&&rar==='epic'&&!S.owned.includes(ev.wob)&&Math.random()<.4) cand=[byId(ev.wob)]; const unowned=cand.filter(w=>!S.owned.includes(w.id)); if(unowned.length&&Math.random()<.7) cand=unowned;
   const w=rnd(cand), dup=S.owned.includes(w.id);
   setTimeout(()=>{stage.querySelector('svg').classList.add('crack');sfx.win();},1500);
   setTimeout(()=>{
@@ -1113,9 +1160,23 @@ function applyWorld(){
   document.body.classList.toggle('darkworld',!!w.dark);
 }
 function renderWorlds(){
-  $('#worlds').innerHTML=Object.entries(WORLDS).map(([k,w])=>{const locked=S.level<w.lv; const n=WOBBLERS.filter(x=>x.world===(k==='sky'?undefined:k)).length, own=WOBBLERS.filter(x=>x.world===(k==='sky'?undefined:k)&&S.owned.includes(x.id)).length;
+  $('#worlds').innerHTML=Object.entries(WORLDS).map(([k,w])=>{const locked=S.level<w.lv; const n=WOBBLERS.filter(x=>!x.event&&x.world===(k==='sky'?undefined:k)).length, own=WOBBLERS.filter(x=>!x.event&&x.world===(k==='sky'?undefined:k)&&S.owned.includes(x.id)).length;
     return `<button class="world ${S.world===k?'on':''} ${locked?'locked':''}" data-w="${k}" style="background:linear-gradient(135deg,${w.sky},${w.sky2})" ${locked?'disabled':''}><span class="wi">${w.icon}</span><span class="wn" style="color:${w.dark?'#fff':'var(--ink)'}">${w.name}</span><span class="wc" style="color:${w.dark?'#fff':'var(--ink)'}">${locked?'🔒 Level '+w.lv:own+'/'+n+' Wobblers'}</span></button>`}).join('');
   $('#worlds').querySelectorAll('.world:not(.locked)').forEach(b=>b.onclick=()=>{ if(S.world===b.dataset.w) return; S.world=b.dataset.w; applyWorld(); sfx.win(); save(); toast(`Welcome to ${WORLDS[S.world].name}!`); renderHome(); });
+}
+
+/* ================= DAILY & EVENTS ================= */
+function renderDaily(){
+  const w=wobblerOfDay(), own=S.owned.includes(w.id), active=S.active===w.id;
+  $('#wod').innerHTML=`${wobblerSVG(w)}<div class="info"><h3>${w.name}</h3><p>${own?(active?'Playing as '+heroName()+' today: <b>×2 hearts</b> and <b>×1.2 coins</b>!':'Choose '+w.name+' as your buddy for <b>×2 hearts</b> and <b>×1.2 coins</b> today.'):'Not hatched yet — eggs are <b>much more likely</b> to hatch '+w.name+' today!'}</p></div>${own&&!active?'<button class="btn sun small" id="wodPick">Pick</button>':''}`;
+  const b=$('#wodPick'); if(b) b.onclick=()=>{S.active=w.id;sfx.pop();save();renderHome();toast(`${w.name} is your buddy today!`);};
+  const ev=activeEvent(); const eb=$('#eventBanner');
+  if(!ev){ eb.innerHTML=''; return; }
+  const ew=byId(ev.wob), got=S.owned.includes(ew.id), grad={spooky:'#3B2A5C,#8A4FCF',winter:'#4FB0FF,#9FD8FF',spring:'#FF6F9C,#FFB7D5',summer:'#FF8A00,#FFD84D'}[ev.id];
+  eb.innerHTML=`<div class="event" style="background:linear-gradient(135deg,${grad})"><span class="ei">${ev.icon}</span><div style="flex:1"><div class="et">${ev.name}</div><p>${got?'You got '+ew.name+'! Event ends in '+eventDaysLeft(ev)+' days.':'Hatch the limited <b>'+ew.name+'</b> before it leaves in <b>'+eventDaysLeft(ev)+' days</b>!'}</p></div>${wobblerSVG(ew)}</div>`;
+}
+async function shareText(text){
+  try{ await navigator.share({title:'Wobble World',text,url:location.origin+location.pathname}); S.stats.shares=(S.stats.shares||0)+1; save(); checkBadges(); }catch(e){}
 }
 
 /* ================= MUSIC ================= */
