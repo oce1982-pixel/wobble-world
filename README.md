@@ -22,6 +22,8 @@ ios/  android/          Capacitor native projects
 npm run build && npm start
 ```
 
+**Live:** https://oce1982-pixel.github.io/wobble-world/ — every push to `main` redeploys it automatically via GitHub Actions.
+
 Then open http://localhost:3000. Any static host works too (GitHub Pages, Netlify, Vercel, Cloudflare Pages). Over HTTPS it is installable as an app on iOS, Android and desktop, and works offline.
 
 Useful URLs: `?tab=play|shop|room|me` opens a tab, `?game=star|bop|mem|simon|rush|jump` starts a game, `?demo=1` loads sample progress (never saved).
