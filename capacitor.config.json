@@ -1,0 +1,8 @@
+{
+  "appId": "com.wobbleworld.app",
+  "appName": "Wobble World",
+  "webDir": "www",
+  "backgroundColor": "#8FD8FF",
+  "ios": { "contentInset": "never", "backgroundColor": "#8FD8FF" },
+  "android": { "backgroundColor": "#8FD8FF" }
+}

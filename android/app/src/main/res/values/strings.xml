@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Wobble World</string>
+    <string name="title_activity_main">Wobble World</string>
+    <string name="package_name">com.wobbleworld.app</string>
+    <string name="custom_url_scheme">com.wobbleworld.app</string>
+</resources>

@@ -1,0 +1,21 @@
+{
+  "name": "wobble-world",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hatch, collect and play with wobbly creatures.",
+  "scripts": {
+    "build": "node build.js",
+    "start": "npx serve www",
+    "screenshots": "node store/shoot.js",
+    "icons": "node icons/make-icons.js",
+    "sync": "npm run build && npx cap sync",
+    "ios": "npm run sync && npx cap open ios",
+    "android": "npm run sync && npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2"
+  }
+}
