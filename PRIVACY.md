@@ -1,10 +1,12 @@
 # Wobble World — Privacy Policy
 
-_Last updated: 17 September 2026_
+_Last updated: 18 September 2026_
 
 Wobble World is a game for children. We designed it to collect **no personal information at all**.
 
-**What we collect:** Nothing. The game has no accounts, no sign-in, no chat, no ads, no analytics, and no in-app purchases.
+**What we collect:** No personal information. The game has no accounts, no sign-in, no chat, no ads and no analytics.
+
+**Optional purchases:** The app-store version offers optional in-app purchases behind a parental gate. Payments are handled by Apple or Google. To validate purchases, our provider RevenueCat receives an anonymous random app ID and the purchase receipt — not linked to your name, email or device identifiers.
 
 **What is stored:** Your game progress (coins, Wobblers, outfits, room layout, scores and settings) is saved only on your own device, in the app's local storage. It is never sent to us or to anyone else. Deleting the app (or clearing the site data in your browser) erases it.
 

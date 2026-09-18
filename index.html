@@ -155,6 +155,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--ink);outli
 .item .n{font-family:Fredoka;font-size:.9rem}
 .item .btn{width:100%}
 .item.worn{outline:3px solid var(--sun)}
+.item.hot{outline:3px solid var(--grape);background:linear-gradient(180deg,#fff,#F1E9FF)}
 .owned{font-size:.75rem;color:var(--muted)}
 
 /* room */
@@ -274,7 +275,7 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
 </style>
 
 <div class="app">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6F61"/><stop offset=".3" stop-color="#FFD84D"/><stop offset=".55" stop-color="#5FD68A"/><stop offset=".8" stop-color="#4FB0FF"/><stop offset="1" stop-color="#9B6BFF"/></linearGradient><radialGradient id="gGalaxy" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6D4BFF"/><stop offset=".6" stop-color="#2B1E6B"/><stop offset="1" stop-color="#140F3A"/></radialGradient><linearGradient id="gFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3D3D"/><stop offset=".5" stop-color="#FF8A00"/><stop offset="1" stop-color="#FFD84D"/></linearGradient><linearGradient id="gCandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#FFF"/><stop offset="1" stop-color="#FF6F9C"/></linearGradient><linearGradient id="gOcean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FD1C5"/><stop offset="1" stop-color="#1B4F4A"/></linearGradient><radialGradient id="gNova" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFF6A0"/><stop offset=".5" stop-color="#FF8A5B"/><stop offset="1" stop-color="#7A2BFF"/></radialGradient></defs></svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6F61"/><stop offset=".3" stop-color="#FFD84D"/><stop offset=".55" stop-color="#5FD68A"/><stop offset=".8" stop-color="#4FB0FF"/><stop offset="1" stop-color="#9B6BFF"/></linearGradient><radialGradient id="gGalaxy" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6D4BFF"/><stop offset=".6" stop-color="#2B1E6B"/><stop offset="1" stop-color="#140F3A"/></radialGradient><linearGradient id="gFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3D3D"/><stop offset=".5" stop-color="#FF8A00"/><stop offset="1" stop-color="#FFD84D"/></linearGradient><linearGradient id="gCandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#FFF"/><stop offset="1" stop-color="#FF6F9C"/></linearGradient><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1B8"/><stop offset=".5" stop-color="#FFB300"/><stop offset="1" stop-color="#FF8A00"/></linearGradient><linearGradient id="gOcean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FD1C5"/><stop offset="1" stop-color="#1B4F4A"/></linearGradient><radialGradient id="gNova" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFF6A0"/><stop offset=".5" stop-color="#FF8A5B"/><stop offset="1" stop-color="#7A2BFF"/></radialGradient></defs></svg>
   <div class="topbar">
     <div class="pill" id="coinPill"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#FFB300"/><circle cx="10" cy="10" r="6.5" fill="#FFD84D"/><text x="10" y="13.5" text-anchor="middle" font-size="9" font-weight="900" fill="#B27400" font-family="Fredoka,sans-serif">W</text></svg><span id="coins">0</span></div>
     <div class="pill"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.5 4.6 17.5l1.2-6L1.3 7.3l6.1-.7z" fill="#9B6BFF"/></svg>Lv <span id="level">1</span></div>
@@ -342,7 +343,7 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
   <!-- SHOP -->
   <section class="screen" id="shop" hidden>
     <h2 style="margin-bottom:8px">Wobble Shop</h2>
-    <div class="tabs"><button data-t="wear" class="on">👒 Wear</button><button data-t="snack">🍕 Snacks</button><button data-t="room">🛋️ Room</button></div>
+    <div class="tabs"><button data-t="wear" class="on">👒 Wear</button><button data-t="snack">🍕 Snacks</button><button data-t="room">🛋️ Room</button><button data-t="premium">💎 Extras</button></div>
     <div id="shopGrid" class="shopgrid"></div>
   </section>
 
@@ -448,9 +449,12 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
     <div class="big" id="resScore">0</div>
     <div id="resLabel" style="color:var(--muted)">stars caught</div>
     <div id="resBadges"></div>
-    <div class="rewards"><div class="pill"><i class="ci"></i> +<span id="resCoins">0</span></div><div class="pill">✨ +<span id="resXP">0</span> XP</div><div class="pill" id="resBonus" hidden>😊 ×1.5</div><div class="pill" id="resWod" hidden>🌟 ×1.2</div></div>
+    <div class="rewards"><div class="pill"><i class="ci"></i> +<span id="resCoins">0</span></div><div class="pill">✨ +<span id="resXP">0</span> XP</div><div class="pill" id="resBonus" hidden>😊 ×1.5</div><div class="pill" id="resWod" hidden>🌟 ×1.2</div><div class="pill" id="resPass" hidden>💎 ×2</div></div>
     <div class="btns"><button class="btn mint wide" id="resAgain">Play again</button><button class="btn blue wide" id="resShare" hidden>📣 Share score</button><button class="btn ghost wide" id="resHome">Done</button></div>
   </div>
+</div>
+<div class="overlay" id="gateDlg" hidden>
+  <div class="modal"><h2>Ask a grown-up</h2><p style="color:var(--muted);margin-top:6px">A parent or guardian needs to answer this before buying.</p><p class="big" id="gateQ" style="font-size:2rem;margin:10px 0">7 × 8?</p><input id="gateIn" inputmode="numeric" pattern="[0-9]*" placeholder="Answer"><div class="btns"><button class="btn mint wide" id="gateOk">Continue</button><button class="btn ghost wide" id="gateCancel">Cancel</button></div></div>
 </div>
 <div class="overlay" id="renameDlg" hidden>
   <div class="modal"><h2>Name your buddy</h2><input id="nameInput" maxlength="14" placeholder="Bloop"><div class="btns"><button class="btn mint wide" id="nameOk">Save</button><button class="btn ghost wide" id="nameCancel">Cancel</button></div></div>
@@ -494,7 +498,8 @@ const WOBBLERS = [
   {id:'pearl',name:'Pearl',color:'#FFF0F5',rarity:'epic',acc:'pearl',world:'ocean'},{id:'kraken',name:'Kraken',color:'url(#gOcean)',rarity:'legendary',acc:'tentacles',world:'ocean'},
   // Seasonal event exclusives (only hatchable during their event)
   {id:'boo',name:'Boo',color:'#F4F6FF',rarity:'epic',acc:'ghost',event:'spooky'},{id:'snowy',name:'Snowy',color:'#FFFFFF',rarity:'epic',acc:'beanie',event:'winter'},
-  {id:'blossom',name:'Blossom',color:'#FFB7D5',rarity:'epic',acc:'flower',event:'spring'},{id:'surfy',name:'Surfy',color:'#4FD1C5',rarity:'epic',acc:'shades',event:'summer'},
+  {id:'blossom',name:'Blossom',color:'#FFB7D5',rarity:'epic',acc:'flower',event:'spring'},
+  {id:'goldie',name:'Goldie',color:'url(#gGold)',rarity:'legendary',acc:'crown',pass:true},{id:'surfy',name:'Surfy',color:'#4FD1C5',rarity:'epic',acc:'shades',event:'summer'},
 ];
 const EVENTS = [
   {id:'spooky',name:'Spooky Season',icon:'🎃',from:'10-15',to:'11-02',wob:'boo'},
@@ -508,7 +513,7 @@ function activeEvent(){
   return EVENTS.find(e=> e.from<=e.to ? (md>=e.from&&md<=e.to) : (md>=e.from||md<=e.to)) || null;
 }
 function eventDaysLeft(ev){ const now=new Date(); let end=new Date(now.getFullYear()+'-'+ev.to+'T23:59:59'); if(end<now) end=new Date((now.getFullYear()+1)+'-'+ev.to+'T23:59:59'); return Math.max(1,Math.ceil((end-now)/864e5)); }
-function wobblerOfDay(){ const pool=WOBBLERS.filter(w=>!w.world&&!w.event); const d=Math.floor(Date.now()/864e5); return pool[d%pool.length]; }
+function wobblerOfDay(){ const pool=WOBBLERS.filter(w=>!w.world&&!w.event&&!w.pass); const d=Math.floor(Date.now()/864e5); return pool[d%pool.length]; }
 const RARITY = {common:{label:'Common',color:'#8FA3C8',w:60},rare:{label:'Rare',color:'#4FB0FF',w:28},epic:{label:'Epic',color:'#9B6BFF',w:10},legendary:{label:'Legendary',color:'#FFB300',w:2}};
 const GOLD_W = {common:0,rare:60,epic:32,legendary:8};
 const byId = id => WOBBLERS.find(w=>w.id===id) || WOBBLERS[0];
@@ -570,7 +575,7 @@ const BADGES = [
   {id:'seasonal',icon:'🎉',name:'Party Animal',desc:'Hatch a seasonal event Wobbler',coins:150,c:s=>s.owned.some(id=>byId(id).event)},
   {id:'wod7',icon:'🌟',name:'Star Buddy',desc:'Play as the Wobbler of the Day 7 times',coins:80,c:s=>(s.stats.wod||0)>=7},
   {id:'share',icon:'📣',name:'Town Crier',desc:'Share a score with a friend',coins:50,c:s=>(s.stats.shares||0)>=1},
-  {id:'all48',icon:'🌍',name:'World Champion',desc:'Own every Wobbler in every world',coins:2000,c:s=>s.owned.filter(id=>!byId(id).event).length>=WOBBLERS.filter(w=>!w.event).length},
+  {id:'all48',icon:'🌍',name:'World Champion',desc:'Own every Wobbler in every world',coins:2000,c:s=>s.owned.filter(id=>!byId(id).event&&!byId(id).pass).length>=WOBBLERS.filter(w=>!w.event&&!w.pass).length},
 ];
 
 /* ================= ART ================= */
@@ -718,7 +723,7 @@ function dailyCheck(){
   const t=todayStr(); if(S.lastDay===t) return;
   const y=todayStr(Date.now()-864e5); S.streak = S.lastDay===y ? S.streak+1 : 1; S.lastDay=t;
   S.goals={day:t,play:0,star:0,hatch:0,claimed:false};
-  const bonus=25*Math.min(S.streak,7); S.coins+=bonus; save();
+  const bonus=25*Math.min(S.streak,7); S.coins+=bonus; if(hasPass()) S.freeGolden=(S.freeGolden||0)+1; save();
   setTimeout(()=>{toast(S.streak>1?`🔥 Day ${S.streak} streak! +${bonus} coins`:`Welcome to Wobble World! +${bonus} coins`,'gold');sfx.coin();},400);
 }
 function careTick(){
@@ -740,7 +745,7 @@ function renderTop(){
   $('#coins').textContent=S.coins; $('#level').textContent=S.level; $('#streak').textContent=S.streak;
   $('#xpFill').style.width=Math.min(100,S.xp/need(S.level)*100)+'%'; $('#xpLabel').textContent=`${S.xp}/${need(S.level)} XP`;
   $('#muteBtn').textContent=S.muted?'🔇':'🔊'; $('#musicBtn').style.opacity=S.music?1:.45;
-  $('#hatchBtn').disabled=S.coins<100; $('#hatchGoldBtn').disabled=S.coins<300;
+  $('#hatchBtn').disabled=S.coins<100; const fg=S.freeGolden||0; $('#hatchGoldBtn').disabled=!fg&&S.coins<300; $('#hatchGoldBtn').innerHTML=fg?`Free ×${fg}`:'300 <i class="ci"></i>';
   const canSpin=S.spinDay!==todayStr(); $('#spinBtn').disabled=!canSpin; $('#spinBtn').textContent=canSpin?'Spin!':'Come back tomorrow'; $('#spinStatus').textContent=canSpin?'free today!':'spun today';
   document.querySelector('.tab[data-s="home"] .dot')?.remove(); if(canSpin||goalsReady()) document.querySelector('.tab[data-s="home"]').insertAdjacentHTML('beforeend','<span class="dot"></span>');
 }
@@ -784,6 +789,7 @@ function renderShop(){
     grid.innerHTML=`<div class="item" style="grid-column:1/-1;flex-direction:row;justify-content:space-between;padding:10px 14px"><span>🍎 Hunger ${Math.round(S.care.hunger)}%</span><span>🎈 Fun ${Math.round(S.care.happy)}%</span></div>`+
       SNACKS.map(s=>`<div class="item"><div class="prev">${s.icon}</div><div class="n">${s.name}</div><div class="owned">+${s.h} food${s.j?` +${s.j} fun`:''}</div><button class="btn sun tiny" data-snack="${s.id}" ${S.coins<s.price?'disabled':''}>${s.price} <i class="ci"></i></button></div>`).join('');
     grid.querySelectorAll('[data-snack]').forEach(b=>b.onclick=()=>{const s=SNACKS.find(x=>x.id===b.dataset.snack); if(!spend(s.price)) return; feed(s); renderShop();});
+  } else if(shopTab==='premium'){ renderPremium(grid);
   } else {
     grid.innerHTML=ROOMITEMS.map(it=>{const n=S.items.filter(x=>x===it.id).length;
       return `<div class="item"><div class="prev">${it.icon}</div><div class="n">${it.name}</div>${n?`<div class="owned">Owned ×${n}</div>`:''}<button class="btn sun tiny" data-room="${it.id}" ${S.coins<it.price?'disabled':''}>${it.price} <i class="ci"></i></button></div>`;}).join('');
@@ -819,7 +825,7 @@ function renderMe(){
   $('#badgeGrid').innerHTML=BADGES.map(b=>`<div class="badge ${S.badges.includes(b.id)?'':'locked'}"><div class="bi">${b.icon}</div><div class="bt">${b.name}</div><div class="bd">${b.desc}</div></div>`).join('');
   const sa=$('#shareApp'); sa.hidden=!navigator.share; sa.onclick=()=>shareText('Come play Wobble World with me! Hatch eggs, collect Wobblers and beat my scores 🥚');
   $('#collCount').textContent=`${S.owned.length}/${WOBBLERS.length}`;
-  $('#collection').innerHTML=WOBBLERS.map(w=>{const own=S.owned.includes(w.id);return `<div class="slot ${own?'':'locked'} ${w.id===S.active?'active':''}" data-id="${w.id}" ${own?'tabindex="0" role="button"':''} title="${own?w.name:(w.world?'Hatch in '+WORLDS[w.world].name:w.event?'Only during '+EVENTS.find(e=>e.id===w.event).name:'???')}">${wobblerSVG(w)}${w.world?'<span class="wt">'+WORLDS[w.world].icon+'</span>':w.event?'<span class="wt">'+EVENTS.find(e=>e.id===w.event).icon+'</span>':''}<span class="r" style="background:${RARITY[w.rarity].color}">${own?(S.names[w.id]||w.name):'?'}</span></div>`}).join('');
+  $('#collection').innerHTML=WOBBLERS.map(w=>{const own=S.owned.includes(w.id);return `<div class="slot ${own?'':'locked'} ${w.id===S.active?'active':''}" data-id="${w.id}" ${own?'tabindex="0" role="button"':''} title="${own?w.name:(w.world?'Hatch in '+WORLDS[w.world].name:w.event?'Only during '+EVENTS.find(e=>e.id===w.event).name:w.pass?'Wobble Pass exclusive':'???')}">${wobblerSVG(w)}${w.world?'<span class="wt">'+WORLDS[w.world].icon+'</span>':w.event?'<span class="wt">'+EVENTS.find(e=>e.id===w.event).icon+'</span>':w.pass?'<span class="wt">💎</span>':''}<span class="r" style="background:${RARITY[w.rarity].color}">${own?(S.names[w.id]||w.name):'?'}</span></div>`}).join('');
   document.querySelectorAll('.slot:not(.locked)').forEach(el=>el.onclick=()=>{S.active=el.dataset.id;sfx.pop();save();renderMe();toast(`${heroName()} is your buddy now!`);});
 }
 
@@ -851,7 +857,7 @@ function finishGame({game,score,coins,xp}){
   const isWod=S.active===wobblerOfDay().id; S.friend[S.active]=(S.friend[S.active]||0)+(isWod?20:10); if(isWod) S.stats.wod=(S.stats.wod||0)+1;
   const prev=S.best[game]; const isBest = score>0 && (prev==null || (G.lower? score<prev : score>prev));
   if(isBest) S.best[game]=score;
-  const happy=isHappy(); if(happy) coins=Math.round(coins*1.5); if(isWod) coins=Math.round(coins*1.2);
+  const happy=isHappy(); if(happy) coins=Math.round(coins*1.5); if(isWod) coins=Math.round(coins*1.2); if(hasPass()) coins*=2;
   addCoins(coins); addXP(xp); save();
   const rankAfter=rankOf(game);
   $('#resTitle').textContent=isBest&&prev!=null?'New record!':coins>=40?'Amazing!':coins>=15?'Nice one!':'Good try!';
@@ -861,7 +867,7 @@ function finishGame({game,score,coins,xp}){
   else if(rankAfter>1){ const i=10-rankAfter; tags+=`<span class="newbest" style="background:var(--card2)">Beat ${RIVALS[i]}'s ${G.ladder[i]} for rank #${rankAfter-1}</span>`; }
   else tags+='<span class="newbest">🥇 You are #1!</span>';
   $('#resBadges').innerHTML=tags;
-  $('#resCoins').textContent=coins; $('#resXP').textContent=xp; $('#resBonus').hidden=!happy; $('#resWod').hidden=!isWod;
+  $('#resCoins').textContent=coins; $('#resXP').textContent=xp; $('#resBonus').hidden=!happy; $('#resWod').hidden=!isWod; $('#resPass').hidden=!hasPass();
   $('#resShare').hidden=!navigator.share; $('#resShare').onclick=()=>shareText(`I scored ${score} ${G.label} in ${G.name} on Wobble World! Can you beat me? 🥚`);
   $('#results').hidden=false;
   if(coins>=30){sfx.win();confetti(100);} else sfx.coin();
@@ -901,7 +907,7 @@ function hatch(gold=false,free=false){
   const weights=gold?GOLD_W:Object.fromEntries(Object.entries(RARITY).map(([k,r])=>[k,r.w]));
   const total=Object.values(weights).reduce((a,b)=>a+b,0); let roll=Math.random()*total, rar='common';
   for(const [k,wv] of Object.entries(weights)){ if(roll<wv){rar=k;break;} roll-=wv; }
-  const ev=activeEvent(); let cand=WOBBLERS.filter(w=>w.rarity===rar&&(!w.world||w.world===S.world)&&(!w.event||(ev&&w.event===ev.id)));
+  const ev=activeEvent(); let cand=WOBBLERS.filter(w=>!w.pass&&w.rarity===rar&&(!w.world||w.world===S.world)&&(!w.event||(ev&&w.event===ev.id)));
   const wod=wobblerOfDay(); if(wod.rarity===rar&&!S.owned.includes(wod.id)&&Math.random()<.5) cand=[wod];
   if(ev&&rar==='epic'&&!S.owned.includes(ev.wob)&&Math.random()<.4) cand=[byId(ev.wob)]; const unowned=cand.filter(w=>!S.owned.includes(w.id)); if(unowned.length&&Math.random()<.7) cand=unowned;
   const w=rnd(cand), dup=S.owned.includes(w.id);
@@ -919,7 +925,7 @@ function hatch(gold=false,free=false){
     $('#hatchAgain').onclick=()=>hatch(gold); $('#hatchHome').onclick=()=>{tabScreen='home';goHome();}; $('#hatchBack').hidden=false;
   },1950);
 }
-$('#hatchBtn').onclick=()=>hatch(false); $('#hatchGoldBtn').onclick=()=>hatch(true);
+$('#hatchBtn').onclick=()=>hatch(false); $('#hatchGoldBtn').onclick=()=>{ if((S.freeGolden||0)>0){ S.freeGolden--; hatch(true,true); } else hatch(true); };
 
 /* ================= helpers for canvas games ================= */
 function heroImage(){ const img=new Image(); img.src='data:image/svg+xml;utf8,'+encodeURIComponent(wobblerSVG(heroWob(),'xmlns="http://www.w3.org/2000/svg"',S.wear)); return img; }
@@ -1160,9 +1166,72 @@ function applyWorld(){
   document.body.classList.toggle('darkworld',!!w.dark);
 }
 function renderWorlds(){
-  $('#worlds').innerHTML=Object.entries(WORLDS).map(([k,w])=>{const locked=S.level<w.lv; const n=WOBBLERS.filter(x=>!x.event&&x.world===(k==='sky'?undefined:k)).length, own=WOBBLERS.filter(x=>!x.event&&x.world===(k==='sky'?undefined:k)&&S.owned.includes(x.id)).length;
+  $('#worlds').innerHTML=Object.entries(WORLDS).map(([k,w])=>{const locked=!worldUnlocked(k); const n=WOBBLERS.filter(x=>!x.event&&!x.pass&&x.world===(k==='sky'?undefined:k)).length, own=WOBBLERS.filter(x=>!x.event&&x.world===(k==='sky'?undefined:k)&&S.owned.includes(x.id)).length;
     return `<button class="world ${S.world===k?'on':''} ${locked?'locked':''}" data-w="${k}" style="background:linear-gradient(135deg,${w.sky},${w.sky2})" ${locked?'disabled':''}><span class="wi">${w.icon}</span><span class="wn" style="color:${w.dark?'#fff':'var(--ink)'}">${w.name}</span><span class="wc" style="color:${w.dark?'#fff':'var(--ink)'}">${locked?'🔒 Level '+w.lv:own+'/'+n+' Wobblers'}</span></button>`}).join('');
   $('#worlds').querySelectorAll('.world:not(.locked)').forEach(b=>b.onclick=()=>{ if(S.world===b.dataset.w) return; S.world=b.dataset.w; applyWorld(); sfx.win(); save(); toast(`Welcome to ${WORLDS[S.world].name}!`); renderHome(); });
+}
+
+/* ================= IN-APP PURCHASES ================= */
+// Product ids must match App Store Connect / Google Play / RevenueCat exactly (see README).
+const IAP_KEYS = { ios: '', android: '' }; // RevenueCat public API keys — fill in before the store build
+const PRODUCTS = [
+  {id:'wobble_pass_monthly',kind:'sub',ent:'pass',icon:'💎',name:'Wobble Pass',price:'$2.99 / month',desc:'×2 coins on every game, a free Golden Egg every day, and the exclusive Goldie Wobbler.',hot:true},
+  {id:'world_pass',kind:'once',ent:'worlds',icon:'🌍',name:'All Worlds Pass',price:'$4.99',desc:'Unlock Candy, Space and Ocean World right now.'},
+  {id:'golden_eggs_3',kind:'consumable',icon:'🥚',name:'3 Golden Eggs',price:'$1.99',desc:'Three eggs, each Rare or better.',grant:s=>{s.freeGolden=(s.freeGolden||0)+3}},
+  {id:'coins_500',kind:'consumable',icon:COIN_ICON(1),name:'500 Coins',price:'$0.99',desc:'A quick top-up.',grant:s=>{s.coins+=500}},
+  {id:'coins_1500',kind:'consumable',icon:COIN_ICON(2),name:'1,500 Coins',price:'$2.49',desc:'Best for outfits and room items.',grant:s=>{s.coins+=1500}},
+  {id:'coins_4000',kind:'consumable',icon:COIN_ICON(3),name:'4,000 Coins',price:'$4.99',desc:'The big bag. Best value.',grant:s=>{s.coins+=4000}},
+];
+const COIN_ICON=k=>'<span style="display:inline-flex;gap:2px">'+'<i class="ci" style="width:1.4em;height:1.4em"></i>'.repeat(k)+'</span>';
+const IAP = {
+  native:false, plugin:null, packages:{}, prices:{},
+  async init(){
+    try{ const C=window.Capacitor; if(!C||!C.isNativePlatform||!C.isNativePlatform()) return;
+      const key=C.getPlatform()==='ios'?IAP_KEYS.ios:IAP_KEYS.android; if(!key) return;
+      this.plugin=C.registerPlugin('Purchases'); await this.plugin.configure({apiKey:key}); this.native=true; await this.refresh(); }catch(e){}
+  },
+  async refresh(){
+    try{ const off=await this.plugin.getOfferings(); const pk=off?.current?.availablePackages||[];
+      for(const p of pk){ this.packages[p.product.identifier]=p; this.prices[p.product.identifier]=p.product.priceString; }
+      const ci=await this.plugin.getCustomerInfo(); this.applyEntitlements(ci.customerInfo); }catch(e){}
+  },
+  applyEntitlements(info){
+    const act=info?.entitlements?.active||{}; const hadPass=!!S.pass;
+    S.pass=!!act.pass; S.worldPass=!!act.worlds||S.worldPass;
+    if(S.pass&&!hadPass) grantGoldie(); save();
+  },
+  async buy(id){
+    const prod=PRODUCTS.find(p=>p.id===id);
+    if(Q.get('iaptest')){ this.grant(prod); return true; }
+    if(!this.native){ toast('Purchases are available in the App Store / Google Play version'); return false; }
+    try{ const pk=this.packages[id]; if(!pk){ toast('This item is not available right now'); return false; }
+      const r=await this.plugin.purchasePackage({aPackage:pk}); this.applyEntitlements(r.customerInfo); if(prod.kind==='consumable') this.grant(prod); else { sfx.fanfare(); confetti(150); } return true; }
+    catch(e){ if(!e?.userCancelled) toast('Purchase did not go through'); return false; }
+  },
+  grant(prod){ if(prod.grant) prod.grant(S); if(prod.ent==='pass'){S.pass=true;grantGoldie();} if(prod.ent==='worlds') S.worldPass=true; save(); renderTop(); sfx.fanfare(); confetti(150); toast(`${prod.name} — thank you!`,'gold'); },
+  async restore(){ if(!this.native){ toast('Nothing to restore in the web version'); return; } try{ const r=await this.plugin.restorePurchases(); this.applyEntitlements(r.customerInfo); toast('Purchases restored'); renderShop(); }catch(e){ toast('Could not restore purchases'); } },
+};
+function grantGoldie(){ if(!S.owned.includes('goldie')){ S.owned.push('goldie'); toast('💎 Goldie joined your collection!','gold'); } }
+const hasPass = () => !!S.pass;
+const worldUnlocked = (k) => S.level>=WORLDS[k].lv || !!S.worldPass;
+
+/* Parental gate — the stores require an adult step before any purchase in a kids' app. */
+function parentalGate(){
+  return new Promise(res=>{
+    const a=3+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*8);
+    const dlg=$('#gateDlg'); $('#gateQ').textContent=`What is ${a} × ${b}?`; $('#gateIn').value=''; dlg.hidden=false; $('#gateIn').focus();
+    const done=v=>{ dlg.hidden=true; $('#gateOk').onclick=null; $('#gateCancel').onclick=null; res(v); };
+    $('#gateOk').onclick=()=>{ if(parseInt($('#gateIn').value,10)===a*b) done(true); else { toast('Not quite — ask a grown-up to try again'); done(false); } };
+    $('#gateCancel').onclick=()=>done(false);
+  });
+}
+function renderPremium(grid){
+  grid.innerHTML=`<div class="item" style="grid-column:1/-1;flex-direction:row;justify-content:space-between;padding:10px 14px"><span>${hasPass()?'💎 Wobble Pass active':'No purchases needed to play — everything can be earned!'}</span><button class="btn ghost tiny" id="restoreBtn">Restore</button></div>`+
+    PRODUCTS.map(p=>{ const owned=(p.ent==='pass'&&hasPass())||(p.ent==='worlds'&&S.worldPass);
+      return `<div class="item ${p.hot?'hot':''}"><div class="prev">${p.icon}</div><div class="n">${p.name}</div><div class="owned" style="min-height:2.6em">${p.desc}</div><button class="btn ${owned?'ghost':'grape'} tiny" data-iap="${p.id}" ${owned?'disabled':''}>${owned?'Active':(IAP.prices[p.id]||p.price)}</button></div>`; }).join('')+
+    `<p class="owned" style="grid-column:1/-1;text-align:center;line-height:1.5">Wobble Pass renews monthly until cancelled in your device's subscription settings. Purchases are made by a parent or guardian. <a href="terms.html" style="color:var(--blue)">Terms</a> · <a href="privacy.html" style="color:var(--blue)">Privacy</a></p>`;
+  $('#restoreBtn').onclick=()=>IAP.restore();
+  grid.querySelectorAll('[data-iap]').forEach(b=>b.onclick=async()=>{ sfx.click(); if(await parentalGate()){ if(await IAP.buy(b.dataset.iap)) renderShop(); } });
 }
 
 /* ================= DAILY & EVENTS ================= */
@@ -1209,7 +1278,7 @@ function demoState(){ // sample progress for screenshots — never saved
   S.badges=BADGES.filter(b=>{try{return b.c(S)}catch(e){return false}}).map(b=>b.id);
 }
 function start(){
-  load(); applyWorld();
+  load(); applyWorld(); IAP.init();
   if(Q.get('demo')){ demoState(); applyWorld(); save=()=>{}; } else { careTick(); dailyCheck(); }
   const tab=Q.get('tab'); showTab(['home','play','shop','room','me'].includes(tab)?tab:'home'); checkBadges();
   const gq=Q.get('game'); if(GAMES[gq]) setTimeout(()=>startGame(gq),50);

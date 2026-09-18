@@ -30,7 +30,7 @@ Feed your buddy snacks, play together, and grow your friendship to five hearts. 
 Beat the rivals ladder in every game, earn 30 badges, level up to unlock new games, and keep your daily streak alive with the Lucky Spin.
 
 ✅ **MADE FOR KIDS**
-No ads. No in-app purchases. No accounts. No chat. Nothing leaves the device. Works offline.
+No ads. No accounts. No chat. Everything can be earned by playing — optional extras are behind a parental gate. Works offline.
 
 ## Keywords (App Store, 100 chars)
 `kids,pet,collect,eggs,hatch,mini games,cute,virtual pet,dress up,room,offline,no ads`
@@ -48,7 +48,20 @@ New: Phoenix, Angel and Princess Wobblers have arrived. Hatch a Golden Egg for a
 - Data collected: **None**
 - Data shared: **None**
 - Accounts required: **No**
-- Ads: **No** · In-app purchases: **No** · User-generated content: **No** · Third-party analytics: **No**
+- Ads: **No** · In-app purchases: **Yes** (see below) · User-generated content: **No** · Third-party analytics: **No**
+- Purchase validation: RevenueCat receives an anonymous app ID + receipt (declare as "App functionality / purchase history, not linked to identity")
+
+## In-app products (create these exact ids in App Store Connect and Google Play, then in RevenueCat)
+| Product id | Type | Price | Entitlement |
+|---|---|---|---|
+| `wobble_pass_monthly` | auto-renewing subscription, 1 month | $2.99 | `pass` |
+| `world_pass` | non-consumable | $4.99 | `worlds` |
+| `golden_eggs_3` | consumable | $1.99 | — |
+| `coins_500` | consumable | $0.99 | — |
+| `coins_1500` | consumable | $2.49 | — |
+| `coins_4000` | consumable | $4.99 | — |
+
+All six go in RevenueCat's **default offering**. Terms of Use URL: `…/wobble-world/terms.html` (required by Apple for subscriptions).
 - Progress is stored only on the device (browser localStorage / WebView storage).
 - Privacy policy: host `PRIVACY.md` at a public URL and paste the link into both stores.
 

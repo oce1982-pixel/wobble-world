@@ -46,12 +46,25 @@ In Android Studio: Build → Generate Signed Bundle / APK → Android App Bundle
 
 After changing `index.html`, run `npm run sync` to push the new build into both native projects.
 
+## In-app purchases
+
+The game is free; optional purchases (Wobble Pass subscription, All Worlds Pass, coin packs, Golden Eggs) live in **Shop → 💎 Extras** behind a parental gate. On the web they are display-only. In the native apps they run through [RevenueCat](https://www.revenuecat.com) (`@revenuecat/purchases-capacitor`), which talks to both stores.
+
+To switch them on:
+1. Create the six products from `store/LISTING.md` in App Store Connect and Google Play Console
+2. Create a RevenueCat project, add both apps, import the products, create entitlements `pass` and `worlds`, and put all six products in the default offering
+3. Paste the two public API keys into `IAP_KEYS` near the top of the purchases section in `index.html`
+4. `npm run sync`, then test with a sandbox account before release
+
+`?iaptest=1` in the URL simulates successful purchases on the web (nothing is charged) for testing the UI. The native purchase flow has not been exercised on a device yet — test it in sandbox before shipping.
+
 ## Store submission checklist
 
 - [ ] Host `PRIVACY.md` somewhere public and add your contact email to it
 - [ ] Upload screenshots from `store/screenshots/` and `store/feature-graphic.png`
 - [ ] Paste the copy from `store/LISTING.md`
-- [ ] Content rating: answer "no" to everything (no ads, purchases, chat, data, violence)
+- [ ] Content rating: no ads, no chat, no data collection, no violence — **yes** to in-app purchases
+- [ ] Add the Terms of Use URL (`terms.html`) and Privacy URL (`privacy.html`) to the App Store listing (required for subscriptions)
 - [ ] Apple "Kids" category requires the app to have no third-party analytics or ads — this app has neither
 - [ ] Change `appId` in `capacitor.config.json` (`com.wobbleworld.app`) to your own reverse-domain id before the first upload; it cannot be changed after
 
