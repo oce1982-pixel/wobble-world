@@ -274,6 +274,7 @@ canvas.game{width:100%;max-width:100%;display:block;border-radius:22px;touch-act
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
 </style>
 
+<script>addEventListener('error',e=>{try{document.documentElement.setAttribute('data-jserror',(e.message||'error').slice(0,200))}catch(_){}} ,true);</script>
 <div class="app">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6F61"/><stop offset=".3" stop-color="#FFD84D"/><stop offset=".55" stop-color="#5FD68A"/><stop offset=".8" stop-color="#4FB0FF"/><stop offset="1" stop-color="#9B6BFF"/></linearGradient><radialGradient id="gGalaxy" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6D4BFF"/><stop offset=".6" stop-color="#2B1E6B"/><stop offset="1" stop-color="#140F3A"/></radialGradient><linearGradient id="gFire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3D3D"/><stop offset=".5" stop-color="#FF8A00"/><stop offset="1" stop-color="#FFD84D"/></linearGradient><linearGradient id="gCandy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset=".5" stop-color="#FFF"/><stop offset="1" stop-color="#FF6F9C"/></linearGradient><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1B8"/><stop offset=".5" stop-color="#FFB300"/><stop offset="1" stop-color="#FF8A00"/></linearGradient><linearGradient id="gOcean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FD1C5"/><stop offset="1" stop-color="#1B4F4A"/></linearGradient><radialGradient id="gNova" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFF6A0"/><stop offset=".5" stop-color="#FF8A5B"/><stop offset="1" stop-color="#7A2BFF"/></radialGradient></defs></svg>
   <div class="topbar">
@@ -1173,6 +1174,7 @@ function renderWorlds(){
 
 /* ================= IN-APP PURCHASES ================= */
 // Product ids must match App Store Connect / Google Play / RevenueCat exactly (see README).
+const COIN_ICON=k=>'<span style="display:inline-flex;gap:2px">'+'<i class="ci" style="width:1.4em;height:1.4em"></i>'.repeat(k)+'</span>';
 const IAP_KEYS = { ios: '', android: '' }; // RevenueCat public API keys — fill in before the store build
 const PRODUCTS = [
   {id:'wobble_pass_monthly',kind:'sub',ent:'pass',icon:'💎',name:'Wobble Pass',price:'$2.99 / month',desc:'×2 coins on every game, a free Golden Egg every day, and the exclusive Goldie Wobbler.',hot:true},
@@ -1182,7 +1184,6 @@ const PRODUCTS = [
   {id:'coins_1500',kind:'consumable',icon:COIN_ICON(2),name:'1,500 Coins',price:'$2.49',desc:'Best for outfits and room items.',grant:s=>{s.coins+=1500}},
   {id:'coins_4000',kind:'consumable',icon:COIN_ICON(3),name:'4,000 Coins',price:'$4.99',desc:'The big bag. Best value.',grant:s=>{s.coins+=4000}},
 ];
-const COIN_ICON=k=>'<span style="display:inline-flex;gap:2px">'+'<i class="ci" style="width:1.4em;height:1.4em"></i>'.repeat(k)+'</span>';
 const IAP = {
   native:false, plugin:null, packages:{}, prices:{},
   async init(){

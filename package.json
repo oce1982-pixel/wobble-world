@@ -4,13 +4,16 @@
   "private": true,
   "description": "Hatch, collect and play with wobbly creatures.",
   "scripts": {
-    "build": "node build.js",
+    "build": "node tools/check.js && node build.js",
     "start": "npx serve www",
     "screenshots": "node store/shoot.js",
     "icons": "node icons/make-icons.js",
     "sync": "npm run build && npx cap sync",
     "ios": "npm run sync && npx cap open ios",
-    "android": "npm run sync && npx cap open android"
+    "android": "npm run sync && npx cap open android",
+    "check": "node tools/check.js",
+    "smoke": "node build.js && node tools/smoke.js",
+    "verify": "node tools/check.js && node build.js && node tools/smoke.js"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",

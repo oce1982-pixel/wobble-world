@@ -72,11 +72,16 @@ To switch them on:
 
 | command | what it does |
 |---|---|
-| `npm run build` | copy the app into `www/` |
+| `npm run verify` | **run before every push** — static checks + headless smoke test |
+| `npm run build` | check, then copy the app into `www/` |
 | `npm run sync` | build + copy into iOS and Android projects |
 | `npm run ios` / `npm run android` | sync and open the native IDE |
 | `npm run screenshots` | regenerate store screenshots with headless Chrome |
 | `npm run icons` | regenerate web icons |
+
+## Testing
+
+`npm run verify` parses every inline script, checks declaration order (a `const` used before it is defined kills the whole page), then loads the built pages in headless Chrome and fails if a screen did not render or threw. The same three steps gate the GitHub Pages deploy, so a broken build cannot reach the live site.
 
 ## Save data
 
